@@ -36,7 +36,7 @@ where `collection` is a Hubble collection name. For information on different col
 ```
 python3 upload_pictures.py
 ```
-This script will upload every picture stored in the 'Images' folder.
+This script uses [instabot](https://github.com/instagrambot/instabot) package and will upload every picture stored in the 'Images' folder.
 
 ## Project Goals
 
