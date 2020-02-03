@@ -1,9 +1,12 @@
 import requests
+import os
 from pathlib import Path
 from PIL import Image
 
 def save_pic(filename, url_number, url, filepath):
-    filename = filename + str(url_number) + '.' + return_file_extension(url)
+    url_number = str(url_number)
+    file_extension = fetch_file_extension(url)
+    filename = f'{filename}{url_number}.{file_extension}'
     response = requests.get(url)
     response.raise_for_status()
 
@@ -14,9 +17,9 @@ def save_pic(filename, url_number, url, filepath):
         file.write(response.content)
     return filename
 
-def return_file_extension(url):
+def fetch_file_extension(url):
     filename = url.split('/')[-1]
-    file_extension = filename.split('.')[-1]
+    file_extension = os.path.splitext(filename)[1]
     return file_extension
 
 def crop_picture(filename):

@@ -1,1 +1,16 @@
 .env
+__pycache__
+images
+blacklist.txt
+comments.txt
+config
+followed.txt
+friends.txt
+log
+secret.txt
+skipped.txt
+unfollowed.txt
+whitelist.txt
+.git
+*_uuid_and_cookie.json
+.DS_Store

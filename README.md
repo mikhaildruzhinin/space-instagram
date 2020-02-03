@@ -22,14 +22,14 @@ pip install -r requirements.txt
 ```
 python3 fetch_spacex.py number
 ```
-where `number` is a number of the SpaceX launch. The script will create a folder called 'Images' in the same directory with the script and all of the pictures will be saved there.
+where `number` is a number of the SpaceX launch. The script will create a folder called 'Images' in the same directory with the script and all of the pictures will be saved there. Sometimes there weren't made any pictures during the launch, but for example launches 32, 71, 72 and 81 surely can offer some photos.
 
 ### fetch_hubble.py
 
 ```
 python3 fetch_hubble.py collection
 ```
-where `collection` is a Hubble collection name. For information on different collections please read section Images of [Hubble API Documentation](http://hubblesite.org/api/documentation#images). This script works similarly to `fetch_spacex.py` and will use the same folder to store pictures.
+where `collection` is a Hubble collection name. Here are some examples of the collections you can download: "holiday_cards", "wallpaper", "spacecraft", "news", "printshop", "stsci_gallery". This script works similarly to `fetch_spacex.py` and will use the same folder to store pictures.
 
 ### upload_pictures.py
 

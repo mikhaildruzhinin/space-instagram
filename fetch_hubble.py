@@ -3,34 +3,34 @@ import requests
 from save_pic import save_pic
 from save_pic import crop_picture
 
-def fetch_hubble(image_id):
+def fetch_hubble_picture(image_id):
     url = 'http://hubblesite.org/api/v3/image/' + str(image_id)
     response = requests.get(url)
     response.raise_for_status()
     url = response.json()['image_files'][-1]['file_url'][2:]
     filename = url.split('/')[-1]
     file_id = url.split('/')[-2]
-    url = 'https://hubblesite.org/uploads/image_file/image_attachment/' + file_id + '/' + filename
+    url = f'https://hubblesite.org/uploads/image_file/image_attachment/{file_id}/{filename}'
     filename = save_pic('hubble', image_id, url, 'images')
-    crop_picture(filename)
+    return filename
 
 def download_hubble_collection(collection_title):
-    url = 'http://hubblesite.org/api/v3/images/' + collection_title
+    url = f'http://hubblesite.org/api/v3/images/{collection_title}'
     response = requests.get(url)
     response.raise_for_status()
     collection = response.json()
     for item_number, item in enumerate(collection):
-        id = collection[item_number]['id']
-        fetch_hubble(id)
-        print(id, 'сохранён')
-    print('коллекция сохранена')
+        image_id = collection[item_number]['id']
+        filename = fetch_hubble_picture(image_id)
+        crop_picture(filename)
 
 def main():
     parser = argparse.ArgumentParser(description='Загрузка фотографий Hubble')
     parser.add_argument('collection_title', type=str, help='Название коллекции')
     args = parser.parse_args()
-    collection_title = args.collection_title # Например, 'spacecraft', 'stsci_gallery'
+    collection_title = args.collection_title
     download_hubble_collection(collection_title)
+    print(f'Коллекция {collection_title} сохранена')
 
 if __name__ == '__main__':
     main()
