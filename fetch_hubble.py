@@ -4,7 +4,8 @@ from save_pic import save_pic
 from save_pic import crop_picture
 
 def fetch_hubble_picture(image_id):
-    url = 'http://hubblesite.org/api/v3/image/' + str(image_id)
+    image_id = str(image_id)
+    url = f'http://hubblesite.org/api/v3/image/{image_id}'
     response = requests.get(url)
     response.raise_for_status()
     url = response.json()['image_files'][-1]['file_url'][2:]

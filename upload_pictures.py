@@ -1,13 +1,15 @@
 import os
 from instabot import Bot
 from dotenv import load_dotenv
+from save_pic import fetch_file_extension
 
 def upload_pictures(instagram_login, instagram_password, directory):
     bot = Bot()
     bot.login(username=instagram_login, password=instagram_password)
     pics = os.listdir(directory)
     for pic in pics:
-        if pic != '.DS_Store':
+        file_extension = fetch_file_extension(pic)
+        if file_extension == '.jpg' or file_extension == '.jpeg' or file_extension == '.png':
             filepath = os.path.join(directory, pic)
             try:
                 bot.upload_photo(filepath)
